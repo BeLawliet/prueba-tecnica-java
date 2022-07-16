@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.app.dao.CategoryDao;
 import com.app.dao.ProductDao;
-import com.app.dto.SaveProductDto;
+import com.app.dto.RequestDto;
 import com.app.models.Category;
 import com.app.models.Product;
 
@@ -19,19 +21,22 @@ public class AppService {
 	@Autowired
 	private CategoryDao categoryDao;
 	
+	@Transactional(readOnly = true)
 	public List<Product> getAllProducts() {
 		return this.productDao.findAllProducts();
 	}
 	
+	@Transactional(readOnly = true)
 	public List<Category> getAllCategories() {
 		return this.categoryDao.findAllCategories();
 	}
 	
+	@Transactional(readOnly = true)
 	public Optional<Product> getProduct(Long productId) {
 		return this.productDao.findById(productId);
 	}
 	
-	public void saveProduct(SaveProductDto request) {
+	public void saveProduct(RequestDto request) {
 		Product newProduct = new Product();
 		newProduct.setProductName(request.getProductName());
 		newProduct.setReference(request.getReference());
@@ -40,5 +45,16 @@ public class AppService {
 		newProduct.setCreationDate(LocalDate.now());
 		newProduct.setCategory(request.getCategory());
 		this.productDao.save(newProduct);
+	}
+	
+	@Transactional
+	public boolean updateProduct(RequestDto request) {
+		Optional<Product> optProduct = this.getProduct(request.getProductId());
+		if (!optProduct.isPresent()) {
+			return false;			
+		}
+		
+		this.productDao.updateProduct(request.getProductName(), request.getReference(), Float.parseFloat(request.getPrice()), request.getStock(), request.getCategory(), request.getProductId());
+		return true;
 	}
 }

@@ -4,7 +4,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import com.app.models.Category;
 
-public class SaveProductDto {
+public class RequestDto {
+	private Long productId;
+	
 	@NotEmpty
 	private String productName;
 	
@@ -20,14 +22,23 @@ public class SaveProductDto {
 	@NotNull
 	private Category category;
 	
-	public SaveProductDto() {}
+	public RequestDto() {}
 	
-	public SaveProductDto(String productName, String reference, String price, Integer stock, Category category) {
+	public RequestDto(Long productId, String productName, String reference, String price, Integer stock, Category category) {
+		this.productId = productId;
 		this.productName = productName;
 		this.reference = reference;
 		this.price = price;
 		this.stock = stock;
 		this.category = category;
+	}
+
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
 	public String getProductName() {

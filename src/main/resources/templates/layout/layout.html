@@ -19,7 +19,48 @@
 </head>
 
 <body>
-    
+    <div th:fragment="form">
+        <div class="row">
+            <input type="hidden" th:field="*{productId}">
+
+            <div class="mb-3 col-6">
+                <label for="productName" class="form-label">Product Name:</label>
+                <input autocomplete="off" type="text" class="form-control" id="productName" th:field="*{productName}">
+                <div th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" class="form-text span__mistake"></div>
+            </div>
+
+            <div class="mb-3 col-6">
+                <label for="price" class="form-label">Price:</label>
+                <input autocomplete="off" type="number" class="form-control" id="lastName" th:field="*{price}">
+                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="form-text span__mistake"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label for="stock" class="form-label">Stock:</label>
+                <input autocomplete="off" type="number" class="form-control" id="stock" th:field="*{stock}">
+                <div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="form-text span__mistake"></div>
+            </div>
+            
+            <div class="mb-3 col-6">
+                <label for="reference" class="form-label">Reference:</label>
+                <input autocomplete="off" type="text" class="form-control" id="stock" th:field="*{reference}">
+                <div th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}" class="form-text span__mistake"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-12">
+                <label for="category">Category</label>
+                <select id="category" th:field="*{category}" class="form-control" required="true">
+                    <option value="">Select a category</option>
+                    <option th:each="i : ${categories}" th:text="${i}" th:value="${i.categoryId}" th:selected="${i.categoryId} ? 'selected'"></option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <script th:fragment="footer" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
