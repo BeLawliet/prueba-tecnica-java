@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+  <div class="main d-flex justify-content-center align-items-center">
+    <div class="container px-5 py-5">
+        <a th:href="@{/form-product}" class="btn btn-outline-success">
+          <span>New Product</span>
+        </a>
+        <h3 class="charlie-bold fs-5 mt-5">List of Products</h3>
+
+        <div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Reference</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">Category</th>
+                <th scope="col">#</th>
+                <th scope="col">#</th>
+              </tr>
+            </thead>          
+
+            <tbody>
+              <tr th:each="i : ${products}">
+                <th scope="row" th:text="${i.productId}"></th>
+                <td th:text="${i.productName}"></td>
+                <td th:text="${i.reference}"></td>
+                <td th:text="${i.price}"></td>
+                <td th:text="${i.stock}"></td>
+                <td th:text="${i.creationDate}"></td>
+                <td th:text="${i.category.categoryId}"></td>
+                <td>
+                  <a id="button-update" th:href="@{/update-product/} + ${i.productId}" class="btn btn-outline-warning">
+                    <em class="fa-solid fa-marker"></em>
+                    <span>Update</span>
+                  </a>
+                </td>
+                <td>
+                  <a th:href="@{/delete-product/} + ${i.productId}" class="btn btn-outline-danger">
+                    <em class="fa-solid fa-trash"></em>
+                    <span>Delete</span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+
+  <script th:replace="layout/layout :: footer"></script>
+</body>
+
+</html>
