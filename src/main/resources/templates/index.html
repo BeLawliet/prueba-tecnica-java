@@ -37,13 +37,13 @@
                 <td th:text="${i.creationDate}"></td>
                 <td th:text="${i.category.categoryId}"></td>
                 <td>
-                  <a id="button-update" th:href="@{/update-product/} + ${i.productId}" class="btn btn-outline-warning">
+                  <a th:href="@{/update-product/} + ${i.productId}" class="btn btn-outline-warning">
                     <em class="fa-solid fa-marker"></em>
                     <span>Update</span>
                   </a>
                 </td>
                 <td>
-                  <a th:href="@{/delete-product/} + ${i.productId}" class="btn btn-outline-danger">
+                  <a class="btn btn-outline-danger" th:href="@{/delete-product/} + ${i.productId}">
                     <em class="fa-solid fa-trash"></em>
                     <span>Delete</span>
                   </a>

@@ -31,7 +31,6 @@ public class AppService {
 		return this.categoryDao.findAllCategories();
 	}
 	
-	@Transactional(readOnly = true)
 	public Optional<Product> getProduct(Long productId) {
 		return this.productDao.findById(productId);
 	}
@@ -56,5 +55,13 @@ public class AppService {
 		
 		this.productDao.updateProduct(request.getProductName(), request.getReference(), Float.parseFloat(request.getPrice()), request.getStock(), request.getCategory(), request.getProductId());
 		return true;
+	}
+	
+	@Transactional
+	public void deleteProduct(Long productId) {
+		Optional<Product> optProduct = this.getProduct(productId);
+		if (optProduct.isPresent()) {
+			this.productDao.delete(optProduct.get());
+		}
 	}
 }

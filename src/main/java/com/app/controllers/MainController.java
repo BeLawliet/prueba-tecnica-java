@@ -78,4 +78,10 @@ public class MainController {
 		
 		return "redirect:/";
 	}
+	
+	@GetMapping(value = "delete-product/{id}")
+	public String deleteProduct(@PathVariable String id) {
+		this.service.deleteProduct(Long.parseLong(id));
+		return "redirect:/";
+	}
 }
