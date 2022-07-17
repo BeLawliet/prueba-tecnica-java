@@ -4,7 +4,7 @@
 <head th:replace="layout/layout :: head"></head>
 
 <body>
-    <div class="container main charlie-regular d-flex justify-content-center align-items-center">
+    <div class="container main d-flex justify-content-center align-items-center">
         <form th:action="@{/save-product}" class="form px-5 py-5" th:object="${requestDto}" method="post">
             <h4 th:text="${title}"></h4>
 

@@ -1,12 +1,13 @@
 package com.app.services;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.app.dao.CategoryDao;
 import com.app.dao.ProductDao;
 import com.app.dto.RequestDto;
@@ -63,5 +64,32 @@ public class AppService {
 		if (optProduct.isPresent()) {
 			this.productDao.delete(optProduct.get());
 		}
+	}
+
+	public Map<String, String> validateSale(Long productId, int amount) {
+		Map<String, String> messages = new HashMap<>();
+		
+		Optional<Product> optProduct = this.getProduct(productId);
+		if (!optProduct.isPresent()) {
+			messages.put("message", "El producto: " + optProduct.get().getProductName() + " con Id: " + productId + " no existe");
+		}
+
+		int currentStock = optProduct.get().getStock();
+		if ((currentStock == 0) || (amount > currentStock)) {
+			messages.put("message", "ERROR: No se puede realizar la venta - El stock es '0' o cantidad es mayor al stock");
+		} else if (amount < 0) {
+			messages.put("message", "ERROR: El valor de la cantidad debe ser positivo");
+		}
+
+		return messages;
+	}
+
+	@Transactional
+	public void saleProduct(Long productId, int amount) {
+		Optional<Product> optProduct = this.getProduct(productId);
+		optProduct.ifPresent(p -> {
+			int newAmount = optProduct.get().getStock() - amount;
+			this.productDao.saleProduct(newAmount, productId);	
+		});
 	}
 }

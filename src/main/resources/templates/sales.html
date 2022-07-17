@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+    <div class="container main d-flex justify-content-center align-items-center">
+        <form th:action="@{/sale-product}" class="form px-5 py-5" method="post">
+            <div th:if="${messages}" class="alert alert-danger" role="alert">
+                <div th:each="i : ${messages}">
+                    <p th:text="${i.value}"></p>
+                </div>
+            </div>
+
+            <h4 th:text="${title}"></h4>
+
+            <div class="row">
+                <div class="mb-3 col-12">
+                    <label for="productId" class="form-label">Product Id:</label>
+                    <input autocomplete="off" type="text" class="form-control" id="productId" name="productId" th:value="${productId}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-12">
+                    <label for="amount" class="form-label">Amount:</label> 
+                    <input autocomplete="off" type="text" class="form-control" id="amount" name="amount" th:value="${amount}">
+                </div>
+            </div>
+
+            <div class="register__button-box d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-info d-block register__button">Sale</button>
+            </div>
+        </form>
+    </div>
+    
+    <script th:replace="layout/layout :: footer"></script>
+</body>
+</html>
