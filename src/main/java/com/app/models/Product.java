@@ -36,8 +36,7 @@ public class Product {
 	
 	public Product() {}
 
-	public Product(Long productId, String productName, String reference, Float price, Float weight, int stock, LocalDate creationDate, Category category) {
-		this.productId = productId;
+	public Product(String productName, String reference, Float price, Float weight, int stock, LocalDate creationDate, Category category) {
 		this.productName = productName;
 		this.reference = reference;
 		this.price = price;

@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.app.dao.CategoryDao;
 import com.app.dao.ProductDao;
+import com.app.dao.SaleDao;
 import com.app.dto.RequestDto;
 import com.app.models.Category;
 import com.app.models.Product;
+import com.app.models.Sale;
 
 @Service
 public class AppService {
@@ -21,6 +23,9 @@ public class AppService {
 	
 	@Autowired
 	private CategoryDao categoryDao;
+
+	@Autowired
+	private SaleDao saleDao;
 	
 	@Transactional(readOnly = true)
 	public List<Product> getAllProducts() {
@@ -72,7 +77,8 @@ public class AppService {
 		
 		Optional<Product> optProduct = this.getProduct(productId);
 		if (!optProduct.isPresent()) {
-			messages.put("message", "El producto: " + optProduct.get().getProductName() + " con Id: " + productId + " no existe");
+			messages.put("message", "El producto con el Id digitado no existe");
+			return messages;
 		}
 
 		int currentStock = optProduct.get().getStock();
@@ -91,6 +97,7 @@ public class AppService {
 		optProduct.ifPresent(p -> {
 			int newAmount = optProduct.get().getStock() - amount;
 			this.productDao.saleProduct(newAmount, productId);	
+			this.saleDao.save(new Sale(p, amount, LocalDate.now()));
 		});
 	}
 }

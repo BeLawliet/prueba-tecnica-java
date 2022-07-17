@@ -31,7 +31,7 @@
 
             <div class="mb-3 col-6">
                 <label for="price" class="form-label">Price:</label>
-                <input autocomplete="off" type="number" class="form-control" id="price th:field="*{price}">
+                <input autocomplete="off" type="number" class="form-control" id="price" th:field="*{price}">
                 <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="form-text"></div>
             </div>
         </div>
