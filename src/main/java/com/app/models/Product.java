@@ -23,8 +23,8 @@ public class Product {
 	private String productName;
 	
 	private String reference;
-	private Float price;
-	private Float weight;
+	private int price;
+	private int weight;
 	private int stock;
 	
 	@Column(name = "creation_date")
@@ -36,7 +36,7 @@ public class Product {
 	
 	public Product() {}
 
-	public Product(String productName, String reference, Float price, Float weight, int stock, LocalDate creationDate, Category category) {
+	public Product(String productName, String reference, int price, int weight, int stock, LocalDate creationDate, Category category) {
 		this.productName = productName;
 		this.reference = reference;
 		this.price = price;
@@ -70,19 +70,19 @@ public class Product {
 		this.reference = reference;
 	}
 
-	public Float getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public Float getWeight() {
+	public int getWeight() {
 		return weight;
 	}
 
-	public void setWeight(Float weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 
-	public void setPrice(Float price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

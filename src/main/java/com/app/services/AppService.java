@@ -45,8 +45,8 @@ public class AppService {
 		Product newProduct = new Product();
 		newProduct.setProductName(request.getProductName());
 		newProduct.setReference(request.getReference());
-		newProduct.setPrice(Float.parseFloat(request.getPrice()));
-		newProduct.setWeight(Float.parseFloat(request.getWeight()));
+		newProduct.setPrice(Integer.parseInt(request.getPrice()));
+		newProduct.setWeight(Integer.parseInt(request.getWeight()));
 		newProduct.setStock(request.getStock());
 		newProduct.setCreationDate(LocalDate.now());
 		newProduct.setCategory(request.getCategory());
@@ -60,7 +60,7 @@ public class AppService {
 			return false;			
 		}
 		
-		this.productDao.updateProduct(request.getProductName(), request.getReference(), Float.parseFloat(request.getPrice()), Float.parseFloat(request.getWeight()), request.getStock(), request.getCategory(), request.getProductId());
+		this.productDao.updateProduct(request.getProductName(), request.getReference(), Integer.parseInt(request.getPrice()), Integer.parseInt(request.getWeight()), request.getStock(), request.getCategory(), request.getProductId());
 		return true;
 	}
 	
