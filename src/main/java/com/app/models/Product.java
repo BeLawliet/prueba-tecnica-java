@@ -24,6 +24,7 @@ public class Product {
 	
 	private String reference;
 	private Float price;
+	private Float weight;
 	private int stock;
 	
 	@Column(name = "creation_date")
@@ -35,11 +36,12 @@ public class Product {
 	
 	public Product() {}
 
-	public Product(Long productId, String productName, String reference, Float price, int stock, LocalDate creationDate, Category category) {
+	public Product(Long productId, String productName, String reference, Float price, Float weight, int stock, LocalDate creationDate, Category category) {
 		this.productId = productId;
 		this.productName = productName;
 		this.reference = reference;
 		this.price = price;
+		this.weight = weight;
 		this.stock = stock;
 		this.creationDate = creationDate;
 		this.category = category;
@@ -71,6 +73,14 @@ public class Product {
 
 	public Float getPrice() {
 		return price;
+	}
+
+	public Float getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Float weight) {
+		this.weight = weight;
 	}
 
 	public void setPrice(Float price) {

@@ -15,6 +15,9 @@ public class RequestDto {
 	
 	@NotEmpty
 	private String price;
+
+	@NotNull
+	private String weight;
 	
 	@NotNull
 	private Integer stock;
@@ -24,11 +27,12 @@ public class RequestDto {
 	
 	public RequestDto() {}
 	
-	public RequestDto(Long productId, String productName, String reference, String price, Integer stock, Category category) {
+	public RequestDto(Long productId, String productName, String reference, String price, String weight, Integer stock, Category category) {
 		this.productId = productId;
 		this.productName = productName;
 		this.reference = reference;
 		this.price = price;
+		this.weight = weight;
 		this.stock = stock;
 		this.category = category;
 	}
@@ -63,6 +67,14 @@ public class RequestDto {
 
 	public void setPrice(String price) {
 		this.price = price;
+	}
+
+	public String getWeight() {
+		return weight;
+	}
+
+	public void setWeight(String weight) {
+		this.weight = weight;
 	}
 
 	public Integer getStock() {

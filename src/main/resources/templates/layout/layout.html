@@ -26,32 +26,38 @@
             <div class="mb-3 col-6">
                 <label for="productName" class="form-label">Product Name:</label>
                 <input autocomplete="off" type="text" class="form-control" id="productName" th:field="*{productName}">
-                <div th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" class="form-text span__mistake"></div>
+                <div th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" class="form-text"></div>
             </div>
 
             <div class="mb-3 col-6">
                 <label for="price" class="form-label">Price:</label>
-                <input autocomplete="off" type="number" class="form-control" id="lastName" th:field="*{price}">
-                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="form-text span__mistake"></div>
+                <input autocomplete="off" type="number" class="form-control" id="price th:field="*{price}">
+                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="form-text"></div>
             </div>
         </div>
 
         <div class="row">
+            <div class="mb-3 col-6">
+                <label for="weight" class="form-label">Weight:</label>
+                <input autocomplete="off" type="number" class="form-control" id="weight" th:field="*{weight}">
+                <div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" class="form-text"></div>
+            </div>
+
             <div class="mb-3 col-6">
                 <label for="stock" class="form-label">Stock:</label>
                 <input autocomplete="off" type="number" class="form-control" id="stock" th:field="*{stock}">
-                <div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="form-text span__mistake"></div>
+                <div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="form-text"></div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label for="reference" class="form-label">Reference:</label>
+                <input autocomplete="off" type="text" class="form-control" id="reference" th:field="*{reference}">
+                <div th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}" class="form-text span__mistake"></div>
             </div>
             
             <div class="mb-3 col-6">
-                <label for="reference" class="form-label">Reference:</label>
-                <input autocomplete="off" type="text" class="form-control" id="stock" th:field="*{reference}">
-                <div th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}" class="form-text span__mistake"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="mb-3 col-12">
                 <label for="category">Category</label>
                 <select id="category" th:field="*{category}" class="form-control" required="true">
                     <option value="">Select a category</option>

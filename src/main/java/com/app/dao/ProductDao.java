@@ -17,8 +17,8 @@ public interface ProductDao extends CrudRepository<Product, Long> {
 	public Optional<Product> findByProductId(Long productId);
 	
 	@Modifying
-	@Query(value = "UPDATE Product p SET p.productName = ?1, p.reference = ?2, p.price = ?3, p.stock = ?4, p.category = ?5 WHERE p.productId = ?6")
-	public void updateProduct(String productName, String reference, Float price, int stock, Category category, Long productId);
+	@Query(value = "UPDATE Product p SET p.productName = ?1, p.reference = ?2, p.price = ?3, p.weight = ?4, p.stock = ?5, p.category = ?6 WHERE p.productId = ?7")
+	public void updateProduct(String productName, String reference, Float price, Float weight, int stock, Category category, Long productId);
 
 	@Modifying
 	@Query(value = "UPDATE Product p SET p.stock = ?1 WHERE p.productId = ?2")
